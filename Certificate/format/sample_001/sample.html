@@ -1,0 +1,269 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>html5のFile APIで２バイト文字のCSVを出力するサンプル。</title>
+	
+	<script src="./encoding.js"></script>
+</head>
+<body>
+
+<h1>html5のFile APIで２バイト文字のCSVを出力するサンプル</h1>
+
+
+<input type="button" value="CSVリンク生成" onclick="f()"><br>
+
+<br>
+
+<a id="hoge">ここからCSVをダウンロード</a><br>
+
+<script>
+
+
+// 文字列から，Unicodeコードポイントの配列を作る
+function str_to_unicode_array( str ){
+	var arr = [];
+	for( var i = 0; i < str.length; i ++ ){
+		arr.push( str.charCodeAt( i ) );
+	}
+	return arr;
+};
+
+
+// CSVダウンロードリンクを生成する
+function f(){
+
+	// CSVの内容
+	// SJIS変換せずにCSV出力するとExcelでは文字化けする
+	var csv_line = "あ,日本語,a,b,c,d,e\r\nSJIS,ならば,文字化け,しない";
+
+//処理する文字列が64KBを超える際の対応として、+=方式を断念。
+var arrDoc = new Array();
+arrDoc.push('%PDF-1.3');
+arrDoc.push('');
+arrDoc.push('1 0 obj % page object - page 1');
+arrDoc.push('<<');
+arrDoc.push(' /Type /Page');
+arrDoc.push(' /Parent 7 0 R       % back pointer');
+arrDoc.push(' /Resources 3 0 R    % font to use');
+arrDoc.push(' /Contents 2 0 R     % page image');
+arrDoc.push('>>');
+arrDoc.push('endobj');
+arrDoc.push('');
+arrDoc.push('2 0 obj % contents object');
+arrDoc.push('<<');
+arrDoc.push(' /Length 1335    % # of bytes between stream and endstream');
+arrDoc.push('>>');
+arrDoc.push('stream');
+arrDoc.push('% draw three lines of text');
+arrDoc.push('');
+arrDoc.push('BT');
+arrDoc.push('/F1 24 Tf            % setfont');
+arrDoc.push('1 0 0 1 72 648 Tm    % moveto');
+arrDoc.push('(Hello World) Tj     % show');
+arrDoc.push('1 0 0 1 72 612 Tm');
+arrDoc.push('<4D53835383568362834E3234837C834383938367> Tj % shift-jis string');
+arrDoc.push('1 0 0 1 72 576 Tm');
+arrDoc.push('0.5 g                % setgray');
+arrDoc.push('<82BB82EA82F08A44904682C982B582BD82E082CC> Tj');
+arrDoc.push('ET');
+arrDoc.push('');
+arrDoc.push('% draw filled, dark blue, shougi koma');
+arrDoc.push('');
+arrDoc.push('q                       % gsave');
+arrDoc.push('12 0 0 12 72 360 cm     % concat - translate and scale');
+arrDoc.push('0 0 0.5 rg              % setcolor for fill');
+arrDoc.push('0 0 m                   % moveto');
+arrDoc.push('12 0 l                  % lineto');
+arrDoc.push('10 11 l');
+arrDoc.push('6 12 l');
+arrDoc.push('2 11 l');
+arrDoc.push('f                       % close path and fill');
+arrDoc.push('Q                       % grestore');
+arrDoc.push('');
+arrDoc.push('% draw stroked brown egg upright');
+arrDoc.push('');
+arrDoc.push('q');
+arrDoc.push('.5 w                    % setlinewidth');
+arrDoc.push('12 0 0 12 360 360 cm');
+arrDoc.push('0.5 0 0 RG              % setcolor for stroking');
+arrDoc.push('0 0 m');
+arrDoc.push('8 0 4 12 0 12 c         % curveto');
+arrDoc.push('-4 12 -8 0 0 0 c');
+arrDoc.push('S                       % stroke');
+arrDoc.push('Q');
+arrDoc.push('');
+arrDoc.push('% draw bitmap - dark green steps');
+arrDoc.push('');
+arrDoc.push('0 0.5 0 rg               % fill color');
+arrDoc.push('144 0 0 144 72 144 cm    % scale 16x16 bits to two-inch square');
+arrDoc.push('BI');
+arrDoc.push('/W 16       % pixcel width');
+arrDoc.push('/H 16       % height');
+arrDoc.push('/BPC 1      % bits per component');
+arrDoc.push('/F /AHx     % filter = ASCII Hex');
+arrDoc.push('/IM true    % imagemask (0 - paint, 1 - transparent)');
+arrDoc.push('ID');
+arrDoc.push('0FFF');
+arrDoc.push('0FFF');
+arrDoc.push('0FFF');
+arrDoc.push('0FFF');
+arrDoc.push('00FF');
+arrDoc.push('00FF');
+arrDoc.push('00FF');
+arrDoc.push('00FF');
+arrDoc.push('000F');
+arrDoc.push('000F');
+arrDoc.push('000F');
+arrDoc.push('000F');
+arrDoc.push('0000');
+arrDoc.push('0000');
+arrDoc.push('0000');
+arrDoc.push('0000>');
+arrDoc.push('EI');
+arrDoc.push('endstream');
+arrDoc.push('endobj       % end of page stream');
+arrDoc.push('');
+arrDoc.push('3 0 obj % resource object');
+arrDoc.push('<<');
+arrDoc.push(' /ProcSet [ /PDF /Text ]    % operators to use');
+arrDoc.push(' /Font << /F1 4 0 R >>      % name the font /F1');
+arrDoc.push('>>');
+arrDoc.push('endobj');
+arrDoc.push('');
+arrDoc.push('% Font definition taken from Acrobat 4 PDFWriter (some comments added)');
+arrDoc.push('');
+arrDoc.push('4 0 obj % base font');
+arrDoc.push('<<');
+arrDoc.push(' /Type /Font');
+arrDoc.push(' /Subtype /Type0                        % Adobe composite font');
+arrDoc.push(' /BaseFont /#82l#82r#83S#83V#83b#83N    % MS-Gothic');
+arrDoc.push(' /DescendantFonts [ 5 0 R ]             % points to actual font');
+arrDoc.push(' /Encoding /90ms-RKSJ-H                 % Shift-JIS encoding');
+arrDoc.push('>>');
+arrDoc.push('endobj');
+arrDoc.push('');
+arrDoc.push('5 0 obj % descendent font');
+arrDoc.push('<<');
+arrDoc.push(' /Type /Font');
+arrDoc.push(' /Subtype /CIDFontType2                 % TrueType');
+arrDoc.push(' /BaseFont /#82l#82r#83S#83V#83b#83N    % MS-Gothic');
+arrDoc.push(' /WinCharSet 128');
+arrDoc.push(' /FontDescriptor 6 0 R                  % points to metric info');
+arrDoc.push(' /CIDSystemInfo');
+arrDoc.push(' <<');
+arrDoc.push('  /Registry(Adobe)');
+arrDoc.push('  /Ordering(Japan1)');
+arrDoc.push('  /Supplement 2');
+arrDoc.push(' >>');
+arrDoc.push(' /DW 1000');
+arrDoc.push(' /W [');
+arrDoc.push('  231 389 500');
+arrDoc.push('  631 631 500');
+arrDoc.push(' ]');
+arrDoc.push('>>');
+arrDoc.push('endobj');
+arrDoc.push('');
+arrDoc.push('6 0 obj % font metric information');
+arrDoc.push('<<');
+arrDoc.push(' /Type /FontDescriptor');
+arrDoc.push(' /FontName /#82l#82r#83S#83V#83b#83N');
+arrDoc.push(' /Flags 39');
+arrDoc.push(' /FontBBox [ -150 -147 1100 853 ]');
+arrDoc.push(' /MissingWidth 507');
+arrDoc.push(' /StemV 92');
+arrDoc.push(' /StemH 92');
+arrDoc.push(' /ItalicAngle 0');
+arrDoc.push(' /CapHeight 853');
+arrDoc.push(' /XHeight 597');
+arrDoc.push(' /Ascent 853');
+arrDoc.push(' /Descent -147');
+arrDoc.push(' /Leading 0');
+arrDoc.push(' /MaxWidth 1000');
+arrDoc.push(' /AvgWidth 507');
+arrDoc.push(' /Style << /Panose <0805020B0609000000000000> >>');
+arrDoc.push('>>');
+arrDoc.push('endobj');
+arrDoc.push('');
+arrDoc.push('% End of font defintion from PDFWriter');
+arrDoc.push('');
+arrDoc.push('7 0 obj % pages object');
+arrDoc.push('<<');
+arrDoc.push(' /Type /Pages');
+arrDoc.push(' /Kids [ 1 0 R ]               % list of pages (only one in this case)');
+arrDoc.push(' /Count 1                      % # of pages - one');
+arrDoc.push(' /MediaBox [ 0 0 595 842 ]     % A4 portrait');
+arrDoc.push('>>');
+arrDoc.push('endobj');
+arrDoc.push('');
+arrDoc.push('8 0 obj % catalog object');
+arrDoc.push('<<');
+arrDoc.push(' /Type /Catalog');
+arrDoc.push(' /Pages 7 0 R      % points to pages object');
+arrDoc.push('>>');
+arrDoc.push('endobj');
+arrDoc.push('');
+arrDoc.push('9 0 obj % info object');
+arrDoc.push('<<');
+arrDoc.push(' /CreationDate (D:19991115)');
+arrDoc.push(' /Title (Hand-written sample PDF)');
+arrDoc.push(' /Author (ARAI Bunkichi, Yokohama Koubunsha)');
+arrDoc.push('>>');
+arrDoc.push('endobj');
+arrDoc.push('');
+arrDoc.push('xref');
+arrDoc.push('0 10');
+arrDoc.push('0000000000 65535 f');
+arrDoc.push('0000000012 00000 n');
+arrDoc.push('0000000184 00000 n');
+arrDoc.push('0000001672 00000 n');
+arrDoc.push('0000001888 00000 n');
+arrDoc.push('0000002185 00000 n');
+arrDoc.push('0000002569 00000 n');
+arrDoc.push('0000002992 00000 n');
+arrDoc.push('0000003218 00000 n');
+arrDoc.push('0000003324 00000 n');
+arrDoc.push('trailer');
+arrDoc.push('<<');
+arrDoc.push(' /Root 8 0 R    % points to catalog object');
+arrDoc.push(' /Info 9 0 R    % info object');
+arrDoc.push(' /Size 10       % # of entries in xref');
+arrDoc.push('>>');
+arrDoc.push('startxref');
+arrDoc.push('3475');
+arrDoc.push('%%EOF');
+var strDocument = arrDoc.join('\r\n');
+
+alert(strDocument);
+
+
+	// Unicodeコードポイントの配列に変換する
+	var unicode_array = str_to_unicode_array( strDocument );
+	
+	// SJISコードポイントの配列に変換
+	var sjis_code_array = Encoding.convert( 
+		unicode_array, // ※文字列を直接渡すのではない点に注意
+		'SJIS',  // to
+		'UNICODE' // from
+	);
+	
+	// 文字コード配列をTypedArrayに変換する
+	var uint8_array = new Uint8Array( sjis_code_array );
+	
+	// 指定されたデータを保持するBlobを作成する
+//	var blob = new Blob([ uint8_array ], { type: 'text/csv' });
+//	var blob = new Blob([this.response], { type: 'application/pdf'});
+	var blob = new Blob([ uint8_array ], { type: 'application/pdf'});
+
+	// Aタグのhref属性にBlobオブジェクトを設定し、リンクを生成
+	window.URL = window.URL || window.webkitURL;
+	document.getElementById("hoge").href = window.URL.createObjectURL(blob);
+	document.getElementById("hoge").download = "test.pdf";
+	
+}
+
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!doctype>
+<html>
+<head>
+    <title>完走証テスト</title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+    <script type="text/javascript" src="./jspdf.debug.js"></script>
+    <script type="text/javascript" src="./Certificate-Test.js"></script>
+
+</head>
+
+<body>
+
+
+<h1>jsPDF完走証</h1>
+
+<p>データURI方式で、PDF形式の完走証を出力する</p>
+
+
+
+<h2>20xx年小金井アクアスロン大会完走証</h2>
+<div><p><pre>var doc = new jsPDF();
+doc.text(20, 20, 'Hello world!');
+doc.text(20, 30, 'This is client-side Javascript, pumping out a PDF.');
+doc.addPage();
+doc.save('aaa.pdf');</pre>
+<a href="javascript:testCertificate()" class="button">Run Code</a></p></div>
+
+
+
+</body>
+</html>
