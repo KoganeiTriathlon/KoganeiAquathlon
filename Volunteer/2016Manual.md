@@ -33,5 +33,8 @@
 
 |資料名|PDF版ダウンロード(PC環境の方向き)|
 |---|---|
-|[使用資機材一覧](./2016Itemlist.md "使用資機材一覧を参照する")|[使用資機材一覧PDF版](https://gitprint.com/KoganeiTriathlon/KoganeiAquathlon/blob/master/minutes/2016%E5%8F%8D%E7%9C%81%E4%BC%9A.md "使用資機材一覧PDF版を参照する")|
+|[スタッフ名簿](./2016Stafflist.md "スタッフ名簿を参照する")|[スタッフ名簿PDF版](https://gitprint.com/KoganeiTriathlon/KoganeiAquathlon/blob/master/Volunteer/2016Stafflist.md "スタッフ名簿PDF版を参照する")|
+|[スタートリスト](../CompetitionGuidelines/2016_Startlist.md "使用資機材一覧を参照する")|[スタートリストPDF版](https://gitprint.com/KoganeiTriathlon/KoganeiAquathlon/blob/master/CompetitionGuidelines/2016_Startlist.md "スタートリストPDF版を参照する")|
+|[使用資機材一覧](./2016Itemlist.md "使用資機材一覧を参照する")|[使用資機材一覧PDF版](https://gitprint.com/KoganeiTriathlon/KoganeiAquathlon/blob/master/Volunteer/2016Itemlist.md "使用資機材一覧PDF版を参照する")|
+|[作業一覧](./2016worklist.md "作業一覧を参照する")|[作業一覧PDF版](https://gitprint.com/KoganeiTriathlon/KoganeiAquathlon/blob/master/Volunteer/2016worklist.md "作業一覧PDF版を参照する")|
 
