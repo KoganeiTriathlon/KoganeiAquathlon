@@ -2,8 +2,6 @@
  * 2017.8.20（日）
  * 大会消耗品リスト
 
-##### 本資料をPDFで保存する際は、下記リンクよりダウンロードしてください。
-https://gitprint.com/KoganeiTriathlon/KoganeiAquathlon/blob/master/Volunteer/2016SuppliesList.md
 
 ---
 ## 【備品リスト】
